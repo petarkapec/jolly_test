@@ -38,6 +38,10 @@ jobs:
         run: npm install vite --save-dev  # Instaliraj Vite ako nije već instaliran
         working-directory: frontend  # Promeni radni direktorijum na `frontend`
 
+      - name: Install React plugin for Vite
+        run: npm install @vitejs/plugin-react --save-dev  # Instaliraj plugin za React za Vite
+        working-directory: frontend  # Promeni radni direktorijum na `frontend``
+
       - name: Set executable permissions for Vite
         run: chmod +x node_modules/.bin/vite
         working-directory: frontend
