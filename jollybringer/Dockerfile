@@ -1,15 +1,20 @@
-FROM alpine/java:21-jre
+# Startna faza
+FROM openjdk:21-jdk-slim
 
-## Ovdje je moguce instalirati alate potrebne za rad aplikacije. Vjerojatno vam nece trebati, no dobro je znati.
-## Linux distro koji se koristi je Alpine, stoga se kao package manager koristi apk
-# RUN apk install <nesto>
+# Instaliraj Maven
+RUN apt-get update && apt-get install -y maven
+
+# Postavi radni direktorijum
+WORKDIR /app
+
+# Kopiraj sve projektne fajlove
+COPY . .
+
+# Izvrši Maven build
 RUN mvn package -DskipTests
 
-# Kopiranje izvrsnog JAR-a iz build containera u izvrsni container
+# Kopiraj JAR fajl
 COPY target/*.jar /app.jar
 
-# Izlaganje porta
-EXPOSE 8080
-
-# Naredba kojom se pokrece aplikacija
-ENTRYPOINT ["java","-jar","/app.jar"]
+# Definiši komandnu liniju za pokretanje aplikacije
+ENTRYPOINT ["java", "-jar", "/app.jar"]
