@@ -47,7 +47,7 @@ jobs:
         with:
           context: ./jollybringer
           push: true
-          tags: ghcr.io/${{ github.repository }}/jollybringer:latest
+          tags: ghcr.io/${{ github.repository }}/jollytest:latest
 
       - name: Trigger release
         if: ${{ env.BACKEND_DEPLOY_HOOK }}
