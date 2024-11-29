@@ -1,4 +1,4 @@
-name: Build and Push Backend Image
+name: Build and Push Backend Image stari
 
 on:
   push:
